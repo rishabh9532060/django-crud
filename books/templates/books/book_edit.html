@@ -1,0 +1,25 @@
+{% extends 'books/base.html' %}
+{% block content %}
+  <form method="POST" action="{% url 'book_update' book.id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" name="title" value="{{ book.title }}" class="form-control" id="title" />
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input type="text" name="author" value="{{ book.author }}" class="form-control" id="author" />
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" name="price" value="{{ book.price }}" class="form-control" id="price" />
+    </div>
+
+    <div class="mb-3">
+      <label for="publish_date" class="form-label">Published Date</label>
+      <input type="date" name="publish_date" value="{{ book.published_date|date:'Y-m-d' }}" class="form-control" id="publish_date" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+{% endblock %}
